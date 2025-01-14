@@ -11,11 +11,13 @@ type admin struct {
 	password string
 }
 
+type adminExtended admin
+
 func (u *user) toString() string {
 	return fmt.Sprintf("user{email: %s}", u.email)
 }
 
-func (a *admin) toString() string {
+func (a *adminExtended) toString() string {
 	return fmt.Sprintf("admin{%s, password: %s}", a.user.toString(), a.password)
 }
 
@@ -24,4 +26,6 @@ func main() {
 	fmt.Println(u.toString())
 	a := admin{user{email: "admin@mail.com"}, "qwerty"}
 	fmt.Println(a.toString())
+	aExt := adminExtended{user{email: "admin@mail.com"}, "qwerty"}
+	fmt.Println(aExt.toString())
 }
