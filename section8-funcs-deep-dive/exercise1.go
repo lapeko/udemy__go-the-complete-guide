@@ -10,9 +10,9 @@ func multiplyBy[T number](num T, multiplier T) T {
 	return num * multiplier
 }
 
-func filterBy[T number](arr *[]T, filter func(T) bool) []T {
-	newArr := (*arr)[0:0]
-	for _, val := range *arr {
+func filterBy[T number](filter func(T) bool, arr ...T) []T {
+	newArr := arr[0:0]
+	for _, val := range arr {
 		if filter(val) {
 			newArr = append(newArr, val)
 		}
@@ -22,9 +22,9 @@ func filterBy[T number](arr *[]T, filter func(T) bool) []T {
 
 func main() {
 	nums := []int{1, 2, 3, 4, 5, 6, 7}
-	odds := filterBy(&nums, func(num int) bool {
+	odds := filterBy(func(num int) bool {
 		return num%2 != 0
-	})
+	}, nums...)
 	for _, value := range odds {
 		fmt.Printf("doubled odd num of %d is %d\n", value, multiplyBy(value, 2))
 	}
