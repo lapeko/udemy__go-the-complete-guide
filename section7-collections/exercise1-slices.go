@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
-	arr := []int{1, 2, 3, 4, 5}
+	arr := [...]int{1, 2, 3, 4, 5}
+	fmt.Printf("", reflect.TypeOf(arr))
 	slice := arr[1:2]
-	fmt.Println(slice, len(slice), cap(slice))
+	fmt.Printf("Init slice: %v, len: %d, cap: %d\n", slice, len(slice), cap(slice))
 	slice = slice[:len(arr)-1]
-	fmt.Println(slice, len(slice), cap(slice))
+	fmt.Printf("Extended slice: %v, len: %d, cap: %d\n", slice, len(slice), cap(slice))
 }
